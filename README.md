@@ -3,11 +3,11 @@ Create the next infrastructure in AWS using Terraform:
 Non-default VPC with:
   -  1 public subnet [/]
   -  1 private subnet [/]
-  -  1 Internet gateway 
-  -  1 NAT gateway
+  -  1 Internet gateway [/]
+  -  1 NAT gateway [/]
 
 2 EC2 instances (free tier) (AMI: Amazon Linux 2 latest):
-  -  1 instance in the private subnet (install Nginx) - should be non-accessible from the Internet
+  -  1 instance in the private subnet (install Nginx) - should be non-accessible from the Internet [/]
   -  1 instance(Bastion) in public subnet should be allowed only ssh access from the Internet [/]
   -  2 instances should have Internet access 
   -  You should have a possibility to reach Webpage of Nginx on your local machine from private EC2 instances through Bastion

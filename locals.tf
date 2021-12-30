@@ -19,9 +19,10 @@ locals {
 locals {
   user_data = <<EOF
       #!/bin/bash
-      yum -y update
-      yum -y install nginx
+      sudo yum -y update
+      sudo yum -y install nginx
       echo "<h2>Hello World!</h2><br>Built by Terraform" > /usr/share/nginx/html/index.html
-      service nginx start
+      sudo service nginx start
+      sudo yum install amazon-cloudwatch-agent
     EOF
 }
