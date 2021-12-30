@@ -15,7 +15,7 @@ resource "aws_security_group" "bastion_public" {
 }
 
 resource "aws_security_group" "app_private" {
-  name        = "sg_for_public_subnet"
+  name        = "sg_for_private_subnet"
   description = "SG for EC2 instances, which in private subnet"
   vpc_id      = module.awesome_vpc.vpc_id
 
@@ -23,6 +23,6 @@ resource "aws_security_group" "app_private" {
     from_port   = 80
     to_port     = 80
     protocol    = "TCP"
-    cidr_blocks = local.public_subnets
+    cidr_blocks = local.private_subnets
   }
 }

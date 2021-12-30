@@ -15,3 +15,13 @@ locals {
   private_subnets = ["10.10.10.32/27"]
   public_subnets  = ["10.10.10.64/27"]
 }
+
+locals {
+  user_data = <<EOF
+      #!/bin/bash
+      yum -y update
+      yum -y install nginx
+      echo "<h2>Hello World!</h2><br>Built by Terraform" > /usr/share/nginx/html/index.html
+      service nginx start
+    EOF
+}

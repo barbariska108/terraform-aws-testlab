@@ -31,12 +31,21 @@ module "awesome_vpc" {
   public_subnets  = local.public_subnets
 }
 
-module "awesome_ec2" {
+module "awesome_bastion_ec2" {
   source = "./modules/awesome_ec2"
-  name   = "test"
+  name   = "bastion-public"
   ami    = data.aws_ami.latest_amazon_linux.id
 
   subnet_id              = module.awesome_vpc.public_subnets_id
   vpc_security_group_ids = [aws_security_group.bastion_public.id]
+}
+
+module "awesome_app_ec2" {
+  source                 = "./modules/awesome_ec2"
+  name                   = "app-private"
+  ami                    = data.aws_ami.latest_amazon_linux.id
+  user_data              = base64encode(local.user_data)
+  subnet_id              = module.awesome_vpc.private_subnets_id
+  vpc_security_group_ids = [aws_security_group.app_private.id]
 }
 
