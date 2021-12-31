@@ -8,7 +8,7 @@ It's contains:
 
 ## Modules
 - awesome_ec2 
-It's used for EC2 Instance creation
+It's used for EC2 Instance creation, in furure it will be can create a IAM policies for the SSM and CloudWatch
 - awesome_vpc
 This module needed for network creation:
 It contains creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway

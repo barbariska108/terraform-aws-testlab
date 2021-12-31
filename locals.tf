@@ -26,5 +26,7 @@ locals {
       sudo service nginx start
       sudo -y yum install amazon-cloudwatch-agent awslogs
       sudo systemctl start awslogsd
+      sudo chkconfig awslogs on
+      sudo systemctl enable awslogsd.service
     EOF
 }

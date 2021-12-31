@@ -36,6 +36,7 @@ resource "aws_iam_instance_profile" "ssm_profile" {
 }
 
 #--------------------------------------------------------------------------------------
+
 resource "aws_cloudwatch_log_group" "this" {
   name              = var.name
   name_prefix       = "log-group"
