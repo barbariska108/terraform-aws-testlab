@@ -8,7 +8,7 @@ resource "aws_security_group" "bastion_public" {
     content {
       from_port   = ingress.value
       to_port     = ingress.value
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
@@ -17,7 +17,7 @@ resource "aws_security_group" "bastion_public" {
     content {
       from_port   = ingress.value
       to_port     = ingress.value
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = local.private_subnets
     }
   }
@@ -27,23 +27,44 @@ resource "aws_security_group" "bastion_public" {
     content {
       from_port   = ingress.value
       to_port     = ingress.value
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = local.public_subnets
     }
   }
-}
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = local.public_subnets
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = local.private_subnets
+  }
+
+  egress {
+    description = "Outbound Allowed"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 resource "aws_security_group" "app_private" {
   name        = "sg_for_private_subnet"
   description = "SG for EC2 instances, which in private subnet"
   vpc_id      = module.awesome_vpc.vpc_id
 
-  dynamic "ingress" { 
+  dynamic "ingress" {
     for_each = ["80", "443", "22"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = local.public_subnets
     }
   }
@@ -53,7 +74,7 @@ resource "aws_security_group" "app_private" {
     content {
       from_port   = ingress.value
       to_port     = ingress.value
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = local.private_subnets
     }
   }
@@ -61,6 +82,21 @@ resource "aws_security_group" "app_private" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
+    cidr_blocks = local.public_subnets
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = local.private_subnets
+  }
+
+  egress {
+    description = "Outbound Allowed"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

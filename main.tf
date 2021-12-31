@@ -17,6 +17,10 @@ module "awesome_bastion_ec2" {
 
   subnet_id              = module.awesome_vpc.public_subnets_id
   vpc_security_group_ids = [aws_security_group.bastion_public.id]
+
+  depends_on = [
+    module.awesome_vpc
+  ]
 }
 
 module "awesome_app_ec2" {
@@ -26,5 +30,9 @@ module "awesome_app_ec2" {
   user_data              = base64encode(local.user_data)
   subnet_id              = module.awesome_vpc.private_subnets_id
   vpc_security_group_ids = [aws_security_group.app_private.id]
+
+  depends_on = [
+    module.awesome_vpc
+  ]
 }
 
