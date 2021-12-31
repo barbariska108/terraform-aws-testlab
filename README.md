@@ -1,10 +1,18 @@
-# Basic AWS infrastracture. 
+# Basic AWS infrastracture
 
 It's contains:
 
 - 2 EC2 instances (in public subnet bastion, in private - app instance with Nginx Web Server)
 - 2 subnets (public and private)
 - VPC w/ IGW, EIP, NAT Gateway and RT 
+
+## Modules
+- awesome_ec2 
+It's used for EC2 Instance creation
+- awesome_vpc
+This module needed for network creation:
+It contains creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway
+
 
 
 
