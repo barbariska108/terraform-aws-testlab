@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ssm_role" {
-  name = "${var.name}-profile"
+  name               = "${var.name}-profile"
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -7,7 +7,7 @@ resource "aws_iam_role" "ssm_role" {
         {
             "Action": "sts:AssumeRole",
             "Principal": {
-               "Service": "ssm.amazonaws.com"
+               "Service": "ec2.amazonaws.com"
             },
             "Effect": "Allow",
             "Sid": ""
@@ -16,12 +16,15 @@ resource "aws_iam_role" "ssm_role" {
 }
 EOF
 }
-data "aws_iam_policy" "ssm" {
-  arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+
+data "aws_partition" "current" {}
+
+data "aws_iam_policy" "AmazonSSMManagedInstanceCore" {
+  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
-resource "aws_iam_role_policy_attachment" "test_attach" {
+resource "aws_iam_role_policy_attachment" "ssm_role_attach" {
   role       = aws_iam_role.ssm_role.name
-  policy_arn = data.aws_iam_policy.ssm.arn
+  policy_arn = data.aws_iam_policy.AmazonSSMManagedInstanceCore.arn
 }
 
 resource "aws_iam_instance_profile" "ssm_profile" {
