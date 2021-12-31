@@ -3,7 +3,7 @@ output "ec2_instance_ids" {
   value       = aws_instance.future_ec2.*.id
 }
 
-output "iam_role_id" {
-  description = "Created IAM roles for the SSM"
-  value       = aws_iam_role.ssm_role.*.id
-}
+# output "iam_role_id" {
+#   description = "Created IAM roles for the SSM"
+#   value       = aws_iam_role.ssm_role.*.id
+# }

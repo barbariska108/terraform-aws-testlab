@@ -22,7 +22,7 @@ resource "aws_security_group" "bastion_public" {
     }
   }
 
-    dynamic "ingress" {
+  dynamic "ingress" {
     for_each = ["80", "22"]
     content {
       from_port   = ingress.value
@@ -38,8 +38,8 @@ resource "aws_security_group" "app_private" {
   description = "SG for EC2 instances, which in private subnet"
   vpc_id      = module.awesome_vpc.vpc_id
 
-  dynamic "ingress" {
-    for_each = ["80", "443"]
+  dynamic "ingress" { 
+    for_each = ["80", "443", "22"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
@@ -49,7 +49,7 @@ resource "aws_security_group" "app_private" {
   }
 
   dynamic "ingress" {
-    for_each = ["80", "443"]
+    for_each = ["80", "443", "22"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value

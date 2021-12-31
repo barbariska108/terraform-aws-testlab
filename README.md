@@ -15,5 +15,5 @@ Create 2 Cloudwatch log groups and logging data from /var/log/secure of each EC2
 Create and use your own Terraform modules in your code.
 Use S3 Bucket for keeping terraform state there. [/]
   -   Enable S3 Versioning for it. [/]
-Use Session Manager access to Bastion instead of PEM Keys.
+Use Session Manager access to Bastion instead of PEM Keys. [x]
 Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
