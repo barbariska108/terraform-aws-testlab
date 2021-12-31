@@ -1,5 +1,5 @@
 # TO BE FIX:
-# Check info reg SSM policy and finalize this one
+# Check info reg SSM policy and finalize this one, add IAM policy for CloudWatch!
 
 resource "aws_iam_role" "ssm_role" {
   name               = "${var.name}-profile"
