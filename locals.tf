@@ -16,6 +16,7 @@ locals {
   public_subnets  = ["10.10.10.64/27"]
 }
 
+# User data locals
 locals {
   user_data = <<EOF
       #!/bin/bash

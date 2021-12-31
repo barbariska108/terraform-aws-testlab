@@ -59,3 +59,9 @@ variable "user_data" {
   type        = string
   default     = null
 }
+
+variable "kms_key_id" {
+  description = "KMS Key ID for CloudWatch"
+  type = string
+  default = "0846342f-4d56-49fc-9ffa-f02240390dc9"
+}
