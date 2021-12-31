@@ -32,6 +32,9 @@ Non-default VPC with:
   -  [x] 1 instance(Bastion) in public subnet should be allowed only ssh access from the Internet 
   -  [x] 2 instances should have Internet access
   -  You should have a possibility to reach Webpage of Nginx on your local machine from private EC2 instances through Bastion
+
+
+
 Create 2 Cloudwatch log groups and logging data from /var/log/secure of each EC2 to related Cloudwatch log group
 Create and use your own Terraform modules in your code. 
 Use S3 Bucket for keeping terraform state there. 
