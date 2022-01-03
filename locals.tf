@@ -15,3 +15,18 @@ locals {
   private_subnets = ["10.10.10.32/27"]
   public_subnets  = ["10.10.10.64/27"]
 }
+
+# User data locals
+locals {
+  user_data = <<EOF
+      #!/bin/bash
+      sudo yum -y update
+      sudo amazon-linux-extras install nginx1.12
+      echo "<h2>Hello World!</h2><br>Built by Terraform" > /usr/share/nginx/html/index.html
+      sudo service nginx start
+      sudo -y yum install amazon-cloudwatch-agent awslogs
+      sudo systemctl start awslogsd
+      sudo chkconfig awslogs on
+      sudo systemctl enable awslogsd.service
+    EOF
+}
