@@ -95,8 +95,8 @@ Non-default VPC with:
 - Use S3 Bucket for keeping terraform state there.
 
 - Enable S3 Versioning for it.
-Use Session Manager access to Bastion instead of PEM Keys.
-Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
+- Use Session Manager access to Bastion instead of PEM Keys.
+- Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
 
 For now, what I wasn't implementing:
 
