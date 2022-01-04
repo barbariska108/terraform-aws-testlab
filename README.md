@@ -6,14 +6,6 @@ It contains:
 - 2 subnets (public and private)
 - VPC w/ IGW, EIP, NAT Gateway, and RT
 
-## Modules
-
-- awesome_ec2
-It's used for EC2 Instance creation, in future it will be can create IAM policies for the SSM and CloudWatch
-- awesome_vpc
-This module is needed for network creation:
-It contains the creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway
-
 ## Requirements
 
 | Name | Version |
@@ -34,6 +26,12 @@ It contains the creation of the VPC, Elastic IP, public/private subnets, Route T
 | <a name="module_awesome_app_ec2"></a> [awesome\_app\_ec2](#module\_awesome\_app\_ec2) | ./modules/awesome_ec2 |
 | <a name="module_awesome_bastion_ec2"></a> [awesome\_bastion\_ec2](#module\_awesome\_bastion\_ec2) | ./modules/awesome_ec2 | 
 | <a name="module_awesome_vpc"></a> [awesome\_vpc](#module\_awesome\_vpc) | ./modules/awesome_vpc | 
+
+- awesome_ec2
+It's used for EC2 Instance creation, in future it will be can create IAM policies for the SSM and CloudWatch
+- awesome_vpc
+This module is needed for network creation:
+It contains the creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway
 
 ## Resources
 
