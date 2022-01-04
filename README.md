@@ -103,6 +103,5 @@ For now, what I wasn't implementing:
 - CloudWatch Groups
 - SessionManager for auth to the EC2
 - Traffic redirect from private app to public bastion
-- More clear README.md (with module attributes and usage)
 
 _But, I plan to fix it ASAP..._
