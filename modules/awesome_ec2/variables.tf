@@ -47,12 +47,6 @@ variable "vpc_security_group_ids" {
   default     = null
 }
 
-variable "key_pair" {
-  description = "SSH Key pair name to ingest into EC2 instance"
-  type        = string
-  default     = "AwesomeProject"
-  sensitive   = true
-}
 
 variable "user_data" {
   description = "Bootstrap script for EC2 instance"
