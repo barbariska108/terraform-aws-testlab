@@ -28,7 +28,7 @@ It contains:
 | <a name="module_awesome_vpc"></a> [awesome\_vpc](#module\_awesome\_vpc) | ./modules/awesome_vpc | 
 
 - awesome_ec2
-It's used for EC2 Instance creation, in future it will be can create IAM policies for the SSM and CloudWatch
+It's used for EC2 Instance creation, in future it can create IAM policies for the SSM and CloudWatch
 - awesome_vpc
 This module is needed for network creation:
 It contains the creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway
