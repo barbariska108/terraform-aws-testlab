@@ -1,6 +1,3 @@
-# TO BE FIX:
-# Check info reg SSM policy and finalize this one, add IAM policy for CloudWatch!
-
 resource "aws_iam_role" "default" {
   name               = "${var.name}-ssm-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
