@@ -28,7 +28,7 @@ It contains:
 | <a name="module_awesome_vpc"></a> [awesome\_vpc](#module\_awesome\_vpc) | ./modules/awesome_vpc | 
 
 - awesome_ec2
-It's used for EC2 Instance creation, in future it can create IAM policies for the SSM and CloudWatch
+It's used for EC2 Instance creation, in future it can create IAM policies for the CloudWatch
 - awesome_vpc
 This module is needed for network creation:
 It contains the creation of the VPC, Elastic IP, public/private subnets, Route Table and NAT Gateway
@@ -94,12 +94,11 @@ Non-default VPC with:
 
 - Enable S3 Versioning for it.
 - Use Session Manager access to Bastion instead of PEM Keys.
-- Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
+- - [x] Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
 
 For now, what I wasn't implementing:
 
 - CloudWatch Groups
-- SessionManager for auth to the EC2
 - Traffic redirect from private app to public bastion
 
 _But, I plan to fix it ASAP..._

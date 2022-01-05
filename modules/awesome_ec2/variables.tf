@@ -47,12 +47,6 @@ variable "vpc_security_group_ids" {
   default     = null
 }
 
-variable "key_pair" {
-  description = "SSH Key pair name to ingest into EC2 instance"
-  type        = string
-  default     = "AwesomeProject"
-  sensitive   = true
-}
 
 variable "user_data" {
   description = "Bootstrap script for EC2 instance"
@@ -64,4 +58,27 @@ variable "kms_key_id" {
   description = "KMS Key ID for CloudWatch"
   type        = string
   default     = null
+}
+
+variable "ssm_document_name" {
+  description = "The name of the document for SSM"
+  type        = string
+  default     = "SSM-SessionManagerRunShell"
+}
+variable "iam_path" {
+  description = "Path in which to create the IAM Role and the IAM Policy."
+  type        = string
+  default     = "/"
+}
+
+variable "s3_bucket_name" {
+  description = "S3 Bucket Name for CloudWatch"
+  type        = string
+  default     = "awesome-terraform-state-bucket"
+}
+
+variable "s3_key_prefix" {
+  description = "S3 Bucket Key Prefix for CloudWatch"
+  type        = string
+  default     = "cloudwatch"
 }
