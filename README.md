@@ -89,11 +89,11 @@ Non-default VPC with:
 - You should have a possibility to reach the Webpage of Nginx on your local machine from private EC2 instances through Bastion
 
 - Create 2 Cloudwatch log groups and logging data from /var/log/secure of each EC2 to related Cloudwatch log group
-- Create and use your own Terraform modules in your code.
-- Use S3 Bucket for keeping terraform state there.
+- - [x] Create and use your own Terraform modules in your code.
+- - [x] Use S3 Bucket for keeping terraform state there.
 
-- Enable S3 Versioning for it.
-- Use Session Manager access to Bastion instead of PEM Keys.
+- - [x] Enable S3 Versioning for it.
+- - [x] Use Session Manager access to Bastion instead of PEM Keys.
 - - [x] Create README.md – with Prerequisites, Description which describe each module, and how to run on the local computer.
 
 For now, what I wasn't implementing:
