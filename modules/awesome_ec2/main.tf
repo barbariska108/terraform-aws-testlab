@@ -1,58 +1,33 @@
 # TO BE FIX:
 # Check info reg SSM policy and finalize this one, add IAM policy for CloudWatch!
 
-resource "aws_iam_role" "ssm_role" {
-  name               = "${var.name}-profile"
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-               "Service": "ec2.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Sid": ""
-        }
-    ]
-}
-EOF
+resource "aws_iam_role" "default" {
+  name               = "${var.name}-ssm-role"
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+  path               = var.iam_path
+  description        = "IAM role for ${var.name}"
 }
 
-data "aws_partition" "current" {}
-
-data "aws_iam_policy" "AmazonSSMManagedInstanceCore" {
-  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
-resource "aws_iam_role_policy_attachment" "ssm_role_attach" {
-  role       = aws_iam_role.ssm_role.name
-  policy_arn = data.aws_iam_policy.AmazonSSMManagedInstanceCore.arn
+resource "aws_iam_policy" "default" {
+  name        = "${var.name}-ssm-policy"
+  policy      = data.aws_iam_policy.default.policy
+  path        = var.iam_path
+  description = "IAM Policy for using a SSM on ${var.name}"
 }
 
-resource "aws_iam_instance_profile" "ssm_profile" {
-  name = "${var.name}-ssm-profile"
-  role = aws_iam_role.ssm_role.name
+resource "aws_iam_role_policy_attachment" "default" {
+  role       = aws_iam_role.default.name
+  policy_arn = aws_iam_policy.default.arn
 }
 
-#--------------------------------------------------------------------------------------
-
-resource "aws_cloudwatch_log_group" "this" {
-  name_prefix       = "log-group"
-  retention_in_days = 1
-  kms_key_id        = var.kms_key_id
-
-  tags = {
-    Name        = "${var.name}-awesome"
-    Environment = var.env_name
-  }
+resource "aws_iam_instance_profile" "default" {
+  name = "${var.name}-session-manager"
+  role = aws_iam_role.default.name
+  # path = var.iam_path
 }
 
-#--------------------------------------------------------------------------------------
-
-resource "aws_instance" "future_ec2" {
+resource "aws_instance" "default" {
   count = var.create_ec2 && length(var.subnet_id) > 0 ? length(var.subnet_id) : 0
-
 
   ami               = var.ami
   instance_type     = var.instance_type
@@ -62,7 +37,7 @@ resource "aws_instance" "future_ec2" {
 
   subnet_id              = element(concat(var.subnet_id, [""]), count.index)
   vpc_security_group_ids = var.vpc_security_group_ids
-  # iam_instance_profile   = aws_iam_instance_profile.ssm_profile.id
+  iam_instance_profile   = aws_iam_instance_profile.default.name
 
   tags = {
     Name        = "${var.name}-awesome"
