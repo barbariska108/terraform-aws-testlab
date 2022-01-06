@@ -18,10 +18,10 @@ output "private_subnets_id" {
   value       = module.awesome_vpc.private_subnets_id
 }
 
-# output "ssm_iam_role_ids" {
-#   description = "SSM IAM Role IDs"
-#   value       = concat(module.awesome_bastion_ec2.iam_role_id, module.awesome_app_ec2.iam_role_id)
-# }
+output "ssm_iam_role_ids" {
+  description = "SSM IAM Role IDs"
+  value       = concat(module.awesome_bastion_ec2.iam_role_id, module.awesome_app_ec2.iam_role_id)
+}
 
 output "instance_ids" {
   description = "EC2 Instances IDs"

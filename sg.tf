@@ -3,47 +3,30 @@ resource "aws_security_group" "bastion_public" {
   description = "SG for EC2 instances, which in public subnet"
   vpc_id      = module.awesome_vpc.vpc_id
 
-  dynamic "ingress" {
-    for_each = ["80", "22"]
-    content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   dynamic "ingress" {
-    for_each = ["80", "22"]
+    for_each = [local.public_subnets, local.private_subnets]
     content {
-      from_port   = ingress.value
-      to_port     = ingress.value
+      from_port   = 80
+      to_port     = 80
       protocol    = "tcp"
-      cidr_blocks = local.private_subnets
+      cidr_blocks = ingress.value
     }
   }
 
-  dynamic "ingress" {
-    for_each = ["80", "22"]
+  dynamic "egress" {
+    for_each = [local.public_subnets, local.private_subnets]
     content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = local.public_subnets
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = egress.value
     }
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = local.public_subnets
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = local.private_subnets
   }
 
   egress {
@@ -60,7 +43,7 @@ resource "aws_security_group" "app_private" {
   vpc_id      = module.awesome_vpc.vpc_id
 
   dynamic "ingress" {
-    for_each = ["80", "443", "22"]
+    for_each = ["80", "443"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
@@ -70,7 +53,7 @@ resource "aws_security_group" "app_private" {
   }
 
   dynamic "ingress" {
-    for_each = ["80", "443", "22"]
+    for_each = ["80", "443"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
@@ -78,18 +61,14 @@ resource "aws_security_group" "app_private" {
       cidr_blocks = local.private_subnets
     }
   }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = local.public_subnets
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = local.private_subnets
+  dynamic "egress" {
+    for_each = [local.public_subnets, local.private_subnets]
+    content {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = egress.value
+    }
   }
 
   egress {
