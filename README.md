@@ -63,7 +63,7 @@ It contains the creation of the VPC, Elastic IP, public/private subnets, Route T
 | <a name="output_private_subnets_id"></a> [private\_subnets\_id](#output\_private\_subnets\_id) | Public Subnets ID |
 | <a name="output_public_subnets_id"></a> [public\_subnets\_id](#output\_public\_subnets\_id) | Public Subnets ID |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID |
-| <a name="ec2_private_ip"></a> [vpc\_id](#output\_ec2\_private\_ip) | Associated Private IP with EC2 instances |
+| <a name="ec2_private_ip"></a> [ec2\_private\_ip](#output\_ec2\_private\_ip) | Associated Private IP with EC2 instances |
 
 
 
