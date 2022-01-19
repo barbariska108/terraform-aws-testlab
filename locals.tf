@@ -16,7 +16,7 @@ locals {
   public_subnets  = ["10.10.10.64/27"]
 }
 
-# User data locals
+# User data path locals
 locals {
   app_user_data     = file("${path.module}/scripts/app_user_data.sh")
   bastion_user_data = file("${path.module}/scripts/bastion_user_data.sh")

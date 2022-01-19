@@ -4,7 +4,6 @@ variable "create_ec2" {
   default     = true
 }
 
-
 variable "name" {
   description = "Name to be used on EC2 instance created"
   type        = string
@@ -46,7 +45,6 @@ variable "vpc_security_group_ids" {
   type        = list(string)
   default     = null
 }
-
 
 variable "user_data" {
   description = "Bootstrap script for EC2 instance"
