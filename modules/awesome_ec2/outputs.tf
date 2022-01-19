@@ -9,6 +9,6 @@ output "iam_role_id" {
 }
 
 output "instance_private_ip" {
-  description = "Associated Private IP"
+  description = "Associated Private IP with EC2 instances"
   value       = aws_instance.default.*.private_ip
 }

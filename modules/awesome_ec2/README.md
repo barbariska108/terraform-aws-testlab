@@ -51,3 +51,4 @@
 |------|-------------|
 | <a name="output_ec2_instance_ids"></a> [ec2\_instance\_ids](#output\_ec2\_instance\_ids) | New EC2 instances IDs |
 | <a name="output_iam_role_id"></a> [iam\_role\_id](#output\_iam\_role\_id) | Created IAM roles for the SSM |
+| <a name="instance_private_ip"></a> [instance\_private\_ip](#output\_instance\_private\_ip) | Associated Private IP with EC2 instances |
