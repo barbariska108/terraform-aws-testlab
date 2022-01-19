@@ -1,16 +1,16 @@
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.0 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.70.0+ |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
 
+## Modules
+
+No modules.
 
 ## Resources
 
@@ -33,14 +33,14 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_azs"></a> [azs](#input\_azs) | The AZs that the resources will be launched | `list(any)` | n/a | yes |
+| <a name="input_azs"></a> [azs](#input\_azs) | The AZs that the resources will be launched | `list(any)` | `null` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Controls if VPC should be created (it affects almost all resources) | `bool` | `true` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | The name of the Environment | `any` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | The name of the VPC and etc. | `any` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | The name of the Environment | `string` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the VPC and etc. | `string` | `null` | no |
 | <a name="input_one_nat_gateway_per_az"></a> [one\_nat\_gateway\_per\_az](#input\_one\_nat\_gateway\_per\_az) | Should be true if you want only one NAT Gateway per availability zone. | `bool` | `false` | no |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | The CIDR block for the private subnet | `list(any)` | n/a | yes |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | The CIDR block for the public subnet | `list(any)` | n/a | yes |
-| <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | The CIDR block of the VPC | `any` | n/a | yes |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | The CIDR block for the private subnet | `list(any)` | `null` | no |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | The CIDR block for the public subnet | `list(any)` | `null` | no |
+| <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | The CIDR block of the VPC | `string` | `null` | no |
 
 ## Outputs
 
