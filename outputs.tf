@@ -27,3 +27,8 @@ output "instance_ids" {
   description = "EC2 Instances IDs"
   value       = concat(module.awesome_app_ec2.ec2_instance_ids, module.awesome_bastion_ec2.ec2_instance_ids)
 }
+
+output "ec2_private_ip" {
+  description = "Associated Private IP with EC2 instances"
+  value       = concat(module.awesome_bastion_ec2.instance_private_ip, module.awesome_app_ec2.instance_private_ip)
+}
